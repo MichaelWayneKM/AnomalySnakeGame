@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm") version "2.3.20"
     application
-    id("org.beryx.jlink") version "3.0.1"
+    id("org.beryx.jlink") version "4.0.2"
 }
 
 group = "com.wkds.firstspringboot"
