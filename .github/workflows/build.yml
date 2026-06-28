@@ -24,7 +24,9 @@ jobs:
 
       - name: Build and Package with jlink
         run: |
-          ./gradlew jlink --no-daemon --stacktrace
+          ./gradlew jlink --no-daemon --stacktrace \
+            -Dorg.gradle.console=plain \
+            -Dorg.gradle.parallel=false
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
