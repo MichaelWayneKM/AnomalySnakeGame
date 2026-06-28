@@ -6,6 +6,10 @@ plugins {
 group = "com.wkds.firstspringboot"
 version = "1.0-SNAPSHOT"
 
+application {
+    mainClass.set("MainKt")
+}
+
 repositories {
     mavenCentral()
 }
