@@ -9,11 +9,8 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -22,14 +19,11 @@ jobs:
         if: runner.os != 'Windows'
         run: chmod +x gradlew
 
-      - name: Build and Package with jlink
-        run: |
-          ./gradlew jlink --no-daemon --stacktrace \
-            -Dorg.gradle.console=plain \
-            -Dorg.gradle.parallel=false
+      - name: Build Distribution
+        run: ./gradlew distZip --no-daemon
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: game-${{ matrix.os }}
-          path: build/image
+          path: build/distributions/AnomalySnake.zip

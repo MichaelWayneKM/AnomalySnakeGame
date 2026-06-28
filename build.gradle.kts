@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm") version "2.3.20"
     application
-    id("org.beryx.jlink") version "4.0.2"
 }
 
 group = "com.wkds.firstspringboot"
@@ -19,11 +18,9 @@ kotlin {
     jvmToolchain(21)
 }
 
-jlink {
-    options.set(listOf("--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"))
-    launcher {
-        name = "AnomalySnake"
-    }
+// This creates a clean, folder-based package
+tasks.distZip {
+    archiveFileName.set("AnomalySnake.zip")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
